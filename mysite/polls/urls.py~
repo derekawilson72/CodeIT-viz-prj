@@ -1,0 +1,31 @@
+from django.conf.urls import url
+from . import views
+urlpatterns = [
+    url(r'^$', views.index, name='index'),
+    url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'), # ex: /polls/5/
+    url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'), # ex: /polls/5/results/
+    url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote1'), # ex: /polls/5/vote/
+    url(r'^(?P<question_id>[0-9]{2})/vote/$', views.vote, name='vote1'), # ex: /polls/5/vote/
+    url(r'^(?P<question_id>[0-9]{3,})/vote/$', views.vote, name='vote2'), # ex: /polls/5/vote/
+]
+ 
+if __name__=='__main__':
+    from django.core.urlresolvers import  resolve, reverse
+    import re
+    ##Test the url functionality with both regex patterns, url reverse  and the url resolver
+    ##The regex will test a pattern to a string to help setup url definitions
+
+    match=re.match(r'^(?P<question_id>[0-9]+)/vote/$','111/vote/')
+    match.group()
+    #'111/vote/'
+    match.groupdict()
+    #{'question_id': '111'}
+
+    ##url reverse will determine the url needed from the urls.py
+    reverse(vote,kwargs={'question_id': u'11'})
+    #u'/polls/11/vote/'
+    
+    rm=resolve('/polls/111/vote/')  ##will test the vote url to return the function parameters
+    #ResolverMatch(func=polls.views.vote, args=(), kwargs={'question_id': u'11'}, url_name=vote1, app_names=[], namespaces=[])
+
+    

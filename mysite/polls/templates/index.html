@@ -1,0 +1,11 @@
+{% if latest_question_list %}<!-- test if list exists -->
+<ul>
+  {% for question in latest_question_list %} <!-- Iterate through list -->
+  <li>
+    <a href="{% url 'detail' question.id %}">{{ question.question_text }}</a> <!--call each entry as a database object -->
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}

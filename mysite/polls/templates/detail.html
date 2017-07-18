@@ -1,0 +1,21 @@
+<h1>{{ question.question_text }}</h1> <!--braces contain tags of context data -->
+<p><strong>-{% if error_message %}{{ error_message }}{% endif %}</strong></p>
+<form action="{% url 'vote' question.id %}" method="post">
+  {% csrf_token %}
+  <table >
+  {% for choice in question.choice_set.all %}
+  
+    <tr>
+      <td>
+	<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+	<label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+      </td>
+      <td>
+	{{ choice.votes }}
+      </td>
+    </tr>
+  
+    {% endfor %}
+    </table>
+  <input type="submit" value="Vote" />
+</form>

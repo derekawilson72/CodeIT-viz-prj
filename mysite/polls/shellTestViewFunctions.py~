@@ -1,0 +1,39 @@
+from polls.views import *
+from django.http import HttpRequest
+
+request     = HttpRequest()    ##initialize a http request
+question_id = 1  ##set the test question id
+
+indexResp   = index(request)   ##return the index page as a response
+print indexResp          ##print the html string returned 
+print indexResp.content  ##just view the content of the response
+
+detailResp  = detail(request, question_id) ##return a detail repsone
+
+resultsResp = results(request, question_id) ##return results response
+
+voteResp    = vote(request, question_id)    ##return a vote response
+
+
+
+from django.test import Client
+c = Client(HTTP_HOST= 'localhost')  ##run a client as though accessing the url
+response = c.get('/polls/',request.GET)  ##get the html response
+print response  ##
+
+response = c.get('/polls/1/',request.GET)  ##get the html response
+print response  ##
+
+
+
+response = c.get('/polls/1/results/',request.GET)  ##get the html response
+print response  ##
+
+##test the server directly with the server up and running
+from django.core.urlresolvers import reverse
+import requests
+indexURL = reverse(index) ##negotiate the url pointing to the index function
+url = "http://127.0.0.1:8000" + indexURL ##set the full url
+resp = requests.get(url) #request the index page
+resp.text ##html output from the page
+resp.status_code ##status code = 200 is normal
