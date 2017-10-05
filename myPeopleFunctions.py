@@ -1,6 +1,38 @@
 
 # coding: utf-8
 
+record01 = {'First': 'Jessica',
+            'Last': 'Mendez',
+            'Age': 29,
+            'Likes':["Jets", "Mets", "Nets"]}
+
+
+class Person():
+    First = None
+    Last  = None
+    Age   = None
+    Likes = []
+
+    def __init__(self,First=None, Last=None, Age=None, Likes=[]):
+        self.First = First
+        self.Last  = Last
+        self.Age   = Age
+        self.Likes = Likes
+
+    def had_a_birthday(self):
+        First = self.First
+        Last  = self.Last
+        Age   = self.Age
+        Age = Age + 1 ##increment the age
+        self.Age = Age
+        print "Happy Birthday!: ", First, " ", Last
+        print "new Age is: " , Age
+        
+        
+
+    
+
+
 
 
 def printPerson(record):
@@ -58,6 +90,20 @@ def quad(x=1, a=1,b=1,c=0):
     return y
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__=='__main__':
 
     record = {'First': 'Jessica', 'Last': 'Mendez',
@@ -89,3 +135,9 @@ if __name__=='__main__':
                             ["Celtics" , "Red Sox", "Bruins"])
 
     record03 = had_a_birthday(record03)
+
+
+    p1  = Person("Jessica", "Mendez", 29, ["Giants", "Yankees", "Nicks"])
+    p1.Age = 25
+    p1.Likes = ["Giants", "Yankees", "Nicks"]
+    p1.had_a_birthday()
