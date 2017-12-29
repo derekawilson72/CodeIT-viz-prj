@@ -1,3 +1,7 @@
+Editing The Views
+=================
+Edit The file polls/views.py to look like this:
+
 ```py
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -9,4 +13,72 @@ def index(request):
     respString = "Hello, %s. You're at the polls index."%(name)
     resp = HttpResponse(respString)
     return resp
+```
+
+Edit The file polls/urls.py to look like this:
+```py
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.index, name='index'),
+]
+
+```
+
+Edit The file mysite/urls.py to look like this:
+```py
+from django.conf.urls import url, include
+from django.contrib import admin
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^polls/', include('polls.urls')),
+]
+```
+
+Edit The file mysite/settings.py to include the *INSTALLED_APPS* variable like this:
+```py
+INSTALLED_APPS = [
+    'polls',  ##include the polls app
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+Edit The file polls/models.py to look like this:
+
+```py
+from __future__ import unicode_literals
+from django.db import models
+# Create your models here.
+class Question(models.Model):
+    """
+    Database table to include questions associated with the app.
+    """
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+class Choice(models.Model):
+    """
+    Database table to include responses to each question.  
+    One question can have many choices.  
+    Questions are delegated by a foreign key.
+    """
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+```
+
+Run the commands:
+```bash
+[user@localhost Python]$ python manage.py makemigrations
+Migrations for 'polls':
+		  polls/migrations/0001_initial.py:
+    			- Create model Choice
+    			- Create model Question
+    			- Add field question to choice
 ```
