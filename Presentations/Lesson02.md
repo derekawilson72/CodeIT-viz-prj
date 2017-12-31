@@ -105,5 +105,38 @@ admin.site.register(Question)
 admin.site.register(Choice)
 ```
 Open the browser to view this content at: http://localhost:8000/admin/
-![Image of Admin01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin01.png) { width=50% }
+![Image of Admin01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin01.png)
+
+Create, Update, Delete (CRUD) any table entries
+
+![Image of Admin02](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin02.png)
+![Image of Admin03](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin03.png)
+
+Edit The file polls/models.py to look like this:
+```py
+from __future__ import unicode_literals
+from django.db import models
+# Create your models here.
+class Question(models.Model):
+    """
+    Database table to include questions associated with the app.
+    """
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+    def __str__(self):
+return self.question_text 
+
+class Choice(models.Model):
+    """
+    Database table to include responses to each question.  One question can have many choices.  Questions are delegated by a foreign key.
+    """
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+    def __str__(self):
+return self.choice_text 
+```
+Tables now appear with question text and choice text.
+![Image of Admin04](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin04.png)
+![Image of Admin05](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin05.png)
 
