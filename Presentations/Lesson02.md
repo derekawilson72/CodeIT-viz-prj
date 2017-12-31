@@ -88,4 +88,22 @@ Migrations for 'polls':
     			- Create model Choice
     			- Create model Question
     			- Add field question to choice
+[user@localhost Python]$ python manage.py migrate
+	operations to perform:
+  			Apply all migrations: admin, auth, contenttypes, polls, sessions
+			Running migrations:
 ```
+Makemigrations will create sql that will create tables for these models with all of the table attributes and formats. Migrate will then apply the database tables to the db backend through Python.
+
+Administering models in the admin site
+
+Edit The file polls/admin.py to look like this:
+```py
+from django.contrib import admin
+from .models import Question, Choice
+admin.site.register(Question)
+admin.site.register(Choice)
+```
+Open the browser to view this content at: http://localhost:8000/admin/
+![Image of View01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin01.png?raw=true)
+
