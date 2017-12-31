@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-![Image of View01](https://github.com/derekawilson72/Presentations/images/View01.png)
+![Image of View01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Views01.png?raw=true)
 
 
 Edit The file polls/models.py to look like this:
