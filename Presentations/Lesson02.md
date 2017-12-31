@@ -105,5 +105,5 @@ admin.site.register(Question)
 admin.site.register(Choice)
 ```
 Open the browser to view this content at: http://localhost:8000/admin/
-![Image of Admin01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin01.png?raw=true)
+![Image of Admin01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Admin01.png =250x)
 
