@@ -48,7 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 ```
-
+Run the commands:
+```bash
+[user@localhost Python]$ python manage.py runserver
+```
+Open the browser to view this content at: http://localhost:8000/polls/
 ![Image of View01](https://github.com/derekawilson72/CodeIT-viz-prj/blob/master/Presentations/images/Views01.png?raw=true)
 
 
