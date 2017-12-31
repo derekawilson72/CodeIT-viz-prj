@@ -49,6 +49,9 @@ INSTALLED_APPS = [
 ]
 ```
 
+![Image of View01](https://github.com/derekawilson72/Presentations/images/View01.png)
+
+
 Edit The file polls/models.py to look like this:
 
 ```py
